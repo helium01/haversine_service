@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('nama_outlite');
             $table->string('kodepos');
             $table->text('alamat');
-            $table->decimal('long',10,7);
-            $table->decimal('lat', 10, 7);
+            $table->double('long');
+            $table->double('lat');
             $table->timestamps();
         });
     }

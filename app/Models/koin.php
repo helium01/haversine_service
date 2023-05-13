@@ -10,6 +10,7 @@ class koin extends Model
     use HasFactory;
     protected $fillable = [
         'id_user',
+        'id_outlite',
         'jumlah_koin',
     ];
 }

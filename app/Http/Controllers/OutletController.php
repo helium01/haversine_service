@@ -9,7 +9,7 @@ class OutletController extends Controller
 {
     public function index()
     {
-        $outlets = Outlet::all();
+        $outlets = outlet::all();
 
         return response()->json([
             'status' => 'success',
@@ -19,7 +19,7 @@ class OutletController extends Controller
 
     public function show($id)
     {
-        $outlet = Outlet::find($id);
+        $outlet = outlet::find($id);
 
         if (!$outlet) {
             return response()->json([
@@ -36,16 +36,16 @@ class OutletController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'id_user' => 'required|integer',
-            'nama_outlite' => 'required|string',
-            'kodepos' => 'required|string',
-            'alamat' => 'required|string',
-            'long' => 'required|numeric',
-            'lat' => 'required|numeric',
-        ]);
+        // $validatedData = $request->validate([
+        //     'id_user' => 'required|integer',
+        //     'nama_outlite' => 'required|string',
+        //     'kodepos' => 'required|string',
+        //     'alamat' => 'required|string',
+        //     'long' => 'required|numeric',
+        //     'lat' => 'required|numeric',
+        // ]);
 
-        $outlet = Outlet::create($validatedData);
+        $outlet = outlet::create($request->all());
 
         return response()->json([
             'status' => 'success',
@@ -55,7 +55,7 @@ class OutletController extends Controller
 
     public function update(Request $request, $id)
     {
-        $outlet = Outlet::find($id);
+        $outlet = outlet::find($id);
 
         if (!$outlet) {
             return response()->json([
@@ -64,16 +64,16 @@ class OutletController extends Controller
             ], 404);
         }
 
-        $validatedData = $request->validate([
-            'id_user' => 'required|integer',
-            'nama_outlite' => 'required|string',
-            'kodepos' => 'required|string',
-            'alamat' => 'required|string',
-            'long' => 'required|numeric',
-            'lat' => 'required|numeric',
-        ]);
+        // $validatedData = $request->validate([
+        //     'id_user' => 'required|integer',
+        //     'nama_outlite' => 'required|string',
+        //     'kodepos' => 'required|string',
+        //     'alamat' => 'required|string',
+        //     'long' => 'required|numeric',
+        //     'lat' => 'required|numeric',
+        // ]);
 
-        $outlet->update($validatedData);
+        $outlet->update($request->all());
 
         return response()->json([
             'status' => 'success',
@@ -83,7 +83,7 @@ class OutletController extends Controller
 
     public function destroy($id)
     {
-        $outlet = Outlet::find($id);
+        $outlet = outlet::find($id);
 
         if (!$outlet) {
             return response()->json([

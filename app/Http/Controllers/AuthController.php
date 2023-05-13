@@ -20,13 +20,21 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|string|in:user,admin_outlite,super_admin',
-        ]);
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|unique:users|max:255',
+        //     'password' => 'required|string|min:8|confirmed',
+        //     'role' => 'required|string|in:user,admin_outlite,super_admin',
+        // ]);
 
+
+            $data=User::where('email',$request->email)->get();
+            if($data->count() != 0){
+
+        return response()->json([
+            'message' => 'data email sudah ada silahkan pilih email baru.'
+        ], 201);
+            }
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
@@ -35,9 +43,12 @@ class AuthController extends Controller
         ]);
 
         $user->save();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'message' => 'Successfully registered.',
+            'access_token' => $token,
+            'data'=>$user
         ], 201);
     }
 

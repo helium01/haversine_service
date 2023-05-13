@@ -10,7 +10,9 @@ class KoinController extends Controller
     public function index()
     {
         $koins = Koin::all();
-        return response()->json(['data' => $koins]);
+        return response()->json([
+            'status'=>'sukses',
+            'data' => $koins]);
     }
 
     public function show($id)
@@ -27,10 +29,13 @@ class KoinController extends Controller
     {
         $koin = Koin::create([
             'id_user' => $request->input('id_user'),
+            'id_outlite' => $request->input('id_outlite'),
             'jumlah_koin' => $request->input('jumlah_koin'),
         ]);
 
-        return response()->json(['data' => $koin], 201);
+        return response()->json([
+            'status'=>'sukses',
+            'data' => $koin], 201);
     }
 
     public function update(Request $request, $id)

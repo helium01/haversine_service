@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('koins', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user');
+            $table->integer('id_outlite');
             $table->integer('jumlah_koin');
             $table->timestamps();
         });
