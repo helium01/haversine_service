@@ -34,6 +34,7 @@ class PenjemputanController extends Controller
         //     'long' => 'required|numeric',
         //     'lat' => 'required|numeric',
         // ]);
+        
         $penjemputan = Penjemputan::create($request->all());
         return response()->json(['data' => $penjemputan], 201);
     }

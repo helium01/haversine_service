@@ -9,22 +9,22 @@ class RequestSedekahController extends Controller
 {
     public function index(Request $request)
     {
-        $requests = RequestSedekah::with('sedekah')->where('id_user', $request->user()->id)->get();
+        $requests = RequestSedekah::all();
 
         return response()->json(['data' => $requests]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'id_sedekah' => 'required|exists:sedekahs,id',
-            'status' => 'required|in:pending,accepted,rejected',
-        ]);
+        // $request->validate([
+        //     'id_sedekah' => 'required|exists:sedekahs,id',
+        //     'status' => 'required|in:pending,accepted,rejected',
+        // ]);
 
-        $data = $request->only(['id_sedekah', 'status']);
-        $data['id_user'] = $request->user()->id;
+        // $data = $request->only(['id_sedekah', 'status']);
+        // $data['id_user'] = $request->user()->id;
 
-        $requestSedekah = RequestSedekah::create($data);
+        $requestSedekah = RequestSedekah::create($request->all());
 
         return response()->json(['data' => $requestSedekah], 201);
     }

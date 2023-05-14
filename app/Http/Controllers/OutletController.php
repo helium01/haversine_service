@@ -19,7 +19,7 @@ class OutletController extends Controller
 
     public function show($id)
     {
-        $outlet = outlet::find($id);
+        $outlet = outlet::where('id_user',$id)->get();
 
         if (!$outlet) {
             return response()->json([

@@ -17,7 +17,7 @@ class KoinController extends Controller
 
     public function show($id)
     {
-        $koin = Koin::find($id);
+        $koin = Koin::where('id_user',$id)->get();
         if ($koin) {
             return response()->json(['data' => $koin]);
         } else {
@@ -27,6 +27,18 @@ class KoinController extends Controller
 
     public function store(Request $request)
     {
+        $data_koin=koin::where('id_outlite',$request->id_outlite)->get();
+        foreach($data_koin as $data){
+            if($data->id_user==$request->id_user){
+                $nilai_koin=koin::find($data->id);
+                $nilai_koin->update([
+                    'jumlah_koin'=>$data->jumlah_koin+$request->jumlah_koin
+                ]);
+        return response()->json([
+            'status'=>'sukses',
+            'data' => $nilai_koin], 201);
+            }
+        }
         $koin = Koin::create([
             'id_user' => $request->input('id_user'),
             'id_outlite' => $request->input('id_outlite'),
