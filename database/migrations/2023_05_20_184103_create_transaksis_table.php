@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('outlets', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->string('jenis_transaksi');
             $table->integer('id_user');
-            $table->string('nama_outlite');
-            $table->string('kodepos');
-            $table->text('alamat');
-            $table->double('lng');
-            $table->double('lat');
+            $table->integer('id_outlite');
+            $table->string('tanggal');
+            $table->integer('jumlah_koin');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('outlets');
+        Schema::dropIfExists('transaksis');
     }
 };

@@ -9,6 +9,7 @@ use App\Http\Controllers\KoinController;
 use App\Http\Controllers\SedekahController;
 use App\Http\Controllers\RequestSedekahController;
 use App\Http\Controllers\RequestSampahController;
+use App\Http\Controllers\RequestPenjemputanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,15 @@ Route::post('/request_sampahs', [RequestSampahController::class, 'store']);
 Route::get('/request_sampahs/{id}', [RequestSampahController::class, 'show']);
 Route::put('/request_sampahs/{id}', [RequestSampahController::class, 'update']);
 Route::delete('/request_sampahs/{id}', [RequestSampahController::class, 'destroy']);
+
+// jenis sampah 
+Route::get('/jenis_sampahs', [JenisSampahController::class, 'index']);
+Route::get('/jenis_sampahs/{id}', [JenisSampahController::class, 'show']);
+Route::post('/jenis_sampahs', [JenisSampahController::class, 'store']);
+Route::put('/jenis_sampahs/{id}', [JenisSampahController::class, 'update']);
+Route::delete('/jenis_sampahs/{id}', [JenisSampahController::class, 'destroy']);
+
+// request penjemputan
+route::get('/request_penjemputan_user/{id}',[RequestPenjemputanController::class,'index_user']);
+route::get('/request_penjemputan_admin/outlite/{id}',[RequestPenjemputanController::class,'index_admin_outlite']);
+route::post('/request_penjemputan',[RequestPenjemputanController::class,'request_outlet']);

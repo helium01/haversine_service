@@ -14,7 +14,7 @@ class outlet extends Model
         'nama_outlite',
         'kodepos',
         'alamat',
-        'long',
+        'lng',
         'lat',
     ];
     public function distance($lat, $lng)

@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('outlets', function (Blueprint $table) {
+        Schema::create('request_penjemputans', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_jenis_sampah');
             $table->integer('id_user');
-            $table->string('nama_outlite');
-            $table->string('kodepos');
+            $table->integer('id_outlite')->nullable();
+            $table->date('tanggal_penjemputan');
             $table->text('alamat');
-            $table->double('lng');
-            $table->double('lat');
+            $table->text('catatan');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('outlets');
+        Schema::dropIfExists('request_penjemputans');
     }
 };
